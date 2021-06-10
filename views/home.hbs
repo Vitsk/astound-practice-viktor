@@ -1,0 +1,34 @@
+{{!-- Home page --}}
+
+{{> header}}
+
+
+<div class="container d-flex flex-row mt-3">
+  <div class="left-column col-md-3 mt-3">
+    <h3>Sidebar</h3>
+  </div>
+
+  <div class="col-md-9 d-flex flex-row flex-wrap justify-content-between">
+    {{#each products}}
+      <div class="card mt-4" style="width: 18rem;">
+        <img 
+          src="{{#if image}}
+            {{image}}
+            {{else}}
+            https://via.placeholder.com/256?text=Picture+not+found
+          {{/if}}" 
+          class="card-img-top" 
+          alt="..."
+        >
+        <div class="card-body">
+          <div class="mt-auto">
+            <h5 class="card-title">
+              <a href="/product/{{id}}" class="product-title">{{name}}</a>
+            </h5>
+            <a href="#" id="btnkek" class="btn btn-success">Add to cart</a>
+          </div>
+        </div>
+      </div>
+  {{/each}}
+  </div>
+</div>
