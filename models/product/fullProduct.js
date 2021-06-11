@@ -1,10 +1,11 @@
 const decorators = require('~/models/product/decorators');
 
-module.exports = function fullProduct(product, masterProduct, productVariations) {
-    decorators.base(product, masterProduct, productVariations);
-    decorators.image(product, masterProduct, productVariations);
-    decorators.price(product, masterProduct, productVariations);
-    decorators.description(product, masterProduct, productVariations);
-    decorators.variations(product, masterProduct, productVariations);
+module.exports = function fullProduct(product, masterProduct, productVariation) {
+    decorators.base(product, masterProduct, productVariation);
+    decorators.master(product, masterProduct, productVariation);
+    decorators.image(product, masterProduct, productVariation);
+    decorators.price(product, masterProduct, productVariation);
+    decorators.description(product, masterProduct, productVariation);
+    decorators.variations(product, masterProduct, productVariation);
     return product;
 }

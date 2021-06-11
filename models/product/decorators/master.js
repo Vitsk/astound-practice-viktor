@@ -5,6 +5,6 @@ module.exports = function (product) {
     if (!apiProduct) {
       return;
     }
-    product.image = apiProduct.image || product.image || 'https://via.placeholder.com/256?text=Picture+not+found';
+    product.master = apiProduct.master || product.master;
   });
 }

@@ -1,18 +1,47 @@
-const selectVariation = document.getElementById('select-variation');
-const variationName = document.getElementById('variation-name');
-const variationImage = document.getElementById('variation-image');
-const variationDescription = document.getElementById('variation-description');
-const variationPrice = document.getElementById('variation-price');
+const selectVariation = document.querySelector('#select-variation');
+const variationName = document.querySelector('#variation-name');
+const variationImage = document.querySelector('#variation-image');
+const variationDescription = document.querySelector('#variation-description');
+const variationPrice = document.querySelector('#variation-price');
+
+const addCartProduct = document.querySelector('#add-cart-product');
 
 selectVariation.addEventListener('change', (e) => {
+  const masterId = selectVariation.dataset.masterid;
   const pid = e.target.value;
 
-  fetch(`/product/variations/${pid}`)
-    .then(response => response.json())
+  fetch(`/product/${masterId}?variation=${pid}&data=${true}`)
+    .then(res => res.json())
     .then(data => {
-      variationName.innerHTML = data.name;
-      variationDescription.innerHTML = data.longDescription;
-      variationPrice.innerHTML = `Price: ${data.price}$`;
-      variationImage.src = data.image || 'https://via.placeholder.com/256?text=Picture+not+found';
+      variationName.innerText = data.name;
+      variationImage.src = data.image;
+      variationDescription.innerHtml = data.longDescription;
+      variationPrice.innerText = `Price: ${data.price}$`;
     })
+})
+
+// test event for adding products to cart
+addCartProduct.addEventListener('click', (e) => {
+  // test data
+  let cart = {
+    items: [
+      { name: variationName.innerText }
+    ],
+    price: 50
+  }
+
+  const res = fetch('/cart', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(cart)
+  });
+  
+  res.then(res => res.json())
+    .then(data => console.log(data));
+
+  const res2 = fetch('/cart');
+  res2.then(res => res.json())
+    .then(data => console.log(data))
 })

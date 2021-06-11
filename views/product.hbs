@@ -5,12 +5,8 @@
 <div class="container d-flex flex-row justify-content-around mt-4">
   <div class="product-img">
     <img 
-      src="{{#if product.image}}
-                {{product.image}}
-              {{else}}
-              https://via.placeholder.com/256?text=Picture+not+found
-              {{/if}}" 
-      alt="" 
+      src="{{product.image}}"
+      alt="product image" 
       id="variation-image"
       width="256" 
       height="256"
@@ -19,17 +15,16 @@
 
   <div class="product-description">
     <h3 id="variation-name">{{product.name}}</h3>
-    <p id="variation-description">{{product.longDescription}}</p>
+    <p id="variation-description">{{{product.longDescription}}}</p>
 
-    <select class="form-select w-50" id="select-variation" aria-label="Default select example">
-      {{!-- <option selected disabled>Choose a variation of product</option> --}}
+    <select class="form-select w-50" id="select-variation" aria-label="Default select example" data-masterid="{{product.master}}">
       {{#each product.variations}}
         <option value="{{pid}}">{{displayValue}}</option>
       {{/each}}
     </select>
 
-    <h4 id="variation-price"></h4>
+    <h4 id="variation-price">Price: {{product.price}}$</h4>
 
-    <a href="#" class="btn btn-success mt-4">Add to cart</a>
+    <button id="add-cart-product" class="btn btn-success mt-4">Add to cart</button>
   </div>
 </div>

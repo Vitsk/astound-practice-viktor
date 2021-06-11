@@ -1,5 +1,5 @@
-const productsHelper = require('~/scripts/helpers/productsHelper')
-const server = require('express')()
+const productsHelper = require('~/scripts/helpers/productsHelper');
+const server = require('express')();
 
 server.get('/', function (req, res) {
     log.info('Controller Home is called');

@@ -11,21 +11,22 @@ module.exports = {
 
     getDetails: function (params) {
         const productId = params.id;
+        const variationId = params.pid;
         const masterProduct = ProductMgr.getProduct(productId);
-        const productVariations = ProductMgr.getProductVariations(productId);
+        const productVariation = ProductMgr.getProductVariation(variationId);
         let product = {};
 
-        product = fullProduct(product, masterProduct, productVariations);
+        product = fullProduct(product, masterProduct, productVariation[0]);
 
         return product;
     },
 
-    getProductVariation: function(params) {
-      const variationId = params.id;
-      const apiProduct = ProductMgr.getProduct(variationId);
-      let variation = {}
+    // getProductVariation: function(params) {
+    //   const variationId = params.id;
+    //   const apiProduct = ProductMgr.getProduct(variationId);
+    //   let variation = {}
 
-      variation = productVariation(variation, apiProduct, {});
-      return variation;
-    }
+    //   variation = productVariation(variation, apiProduct, {});
+    //   return variation;
+    // }
 }

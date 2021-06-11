@@ -17,6 +17,10 @@ const hbs = exphbs.create({
 app.engine('.hbs', hbs.engine)
 app.set('view engine', '.hbs')
 app.use(express.static('static'))
+app.use(express.urlencoded({
+  extended: true
+}))
+app.use(express.json())
 
 fs.readdir(path.resolve('controllers'), 'utf8', function (err, files) {
   if (err) {

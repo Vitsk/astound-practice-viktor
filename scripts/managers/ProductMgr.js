@@ -4,6 +4,7 @@ const ProductMgr = {};
 
 ProductMgr.getMasterProducts = function () {
   return products.filter(function (product) {
+    product.image = product.image || 'https://via.placeholder.com/256?text=Picture+not+found';
     return product.isMaster;
   });
 };
@@ -14,9 +15,9 @@ ProductMgr.getProduct = function (productId) {
   });
 };
 
-ProductMgr.getProductVariations = function (productId) {
+ProductMgr.getProductVariation = function (variationId) {
   return products.filter(function (product) {
-    return product.master === productId
+    return product.id === variationId
   });
 };
 
