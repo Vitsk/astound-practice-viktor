@@ -1,8 +1,10 @@
 const ProductFactory = require('~/scripts/factories/product');
 const productsHelper = {};
 
-productsHelper.getProductsTile = function () {
-    return ProductFactory.getMasters();
+productsHelper.getProductsTile = function (page = 1) {
+    return ProductFactory.getMasters({
+        page: page,
+    });
 };
 
 productsHelper.getProductDetails = function (productId, variationId) {

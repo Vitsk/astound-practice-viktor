@@ -12,7 +12,15 @@ const app = express()
 
 // Register all middlewares.
 const hbs = exphbs.create({
-    extname: '.hbs'
+  extname: '.hbs',
+  helpers: {
+    times: function (n, block) {
+      var accum = '';
+      for (var i = 1; i <= n; ++i)
+        accum += block.fn(i);
+      return accum;
+    }
+  }
 })
 app.engine('.hbs', hbs.engine)
 app.set('view engine', '.hbs')
@@ -27,7 +35,7 @@ fs.readdir(path.resolve('controllers'), 'utf8', function (err, files) {
     return log.info(err.message)
   }
   files.forEach(function (file) {
-      app.use(require('../controllers/' + file))
+    app.use(require('../controllers/' + file))
   })
 })
 

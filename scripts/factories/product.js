@@ -5,8 +5,16 @@ const productVariation = require('~/models/product/productVariation');
 const fullProduct = require('~/models/product/fullProduct');
 
 module.exports = {
-    getMasters: function () {
-        return ProductMgr.getMasterProducts();
+    getMasters: function (params) {
+        const masterProducts = ProductMgr.getMasterProducts();
+        const startIndex = (params.page - 1) * 6;
+        const endIndex = params.page * 6;
+        const pagesCount = Math.ceil(masterProducts.length / 6);
+
+        return {
+            masterProducts: masterProducts.slice(startIndex, endIndex),
+            count: pagesCount,
+        };
     },
 
     getDetails: function (params) {

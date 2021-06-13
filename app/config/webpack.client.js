@@ -2,10 +2,13 @@ const path = require('path')
 
 module.exports = {
   mode: 'none',
-  entry: '/client/app.js',
+  entry: {
+    home: '/client/home.js',
+    product: '/client/product.js',
+  },
   output: {
     path: path.resolve('static', 'js', 'compiled'),
-    filename: 'app.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
