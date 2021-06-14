@@ -1,9 +1,10 @@
 const ProductFactory = require('~/scripts/factories/product');
 const productsHelper = {};
 
-productsHelper.getProductsTile = function (page = 1) {
+productsHelper.getProductsTile = function (page = 1, limit) {
     return ProductFactory.getMasters({
         page: page,
+        limit: limit
     });
 };
 
@@ -13,11 +14,5 @@ productsHelper.getProductDetails = function (productId, variationId) {
         pid: variationId
     })
 };
-
-// productsHelper.getProductVariation = function (productId) {
-//     return ProductFactory.getProductVariation({
-//         id: productId,
-//     })
-// };
 
 module.exports = productsHelper;

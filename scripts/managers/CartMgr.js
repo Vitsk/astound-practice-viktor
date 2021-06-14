@@ -1,13 +1,14 @@
 const cart = require('~/db/cart.json');
 const CartMgr = {};
 
+
 CartMgr.getCartData = function () {
-  return cart;
+  return cart[0];
 };
 
-CartMgr.setCartData = function (data) {
-  cart[0].items.push(data.items);
-  cart[0].price += data.price
+CartMgr.setCartData = function (cartItem) {
+  cart[0].items.push(cartItem.item);
+  cart[0].totalPrice += cartItem.totalPrice;
   return JSON.stringify("Successful");
 };
 

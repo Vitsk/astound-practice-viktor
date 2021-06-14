@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     home: '/client/home.js',
     product: '/client/product.js',
+    cart: '/client/cart.js',
   },
   output: {
     path: path.resolve('static', 'js', 'compiled'),

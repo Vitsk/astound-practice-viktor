@@ -1,18 +1,19 @@
 const ProductMgr = require('~/scripts/managers/ProductMgr');
 
 // const productTile = require('~/models/product/productTile');
-const productVariation = require('~/models/product/productVariation');
+// const productVariation = require('~/models/product/productVariation');
 const fullProduct = require('~/models/product/fullProduct');
 
 module.exports = {
     getMasters: function (params) {
         const masterProducts = ProductMgr.getMasterProducts();
-        const startIndex = (params.page - 1) * 6;
-        const endIndex = params.page * 6;
-        const pagesCount = Math.ceil(masterProducts.length / 6);
+        const startIndex = (params.page - 1) * params.limit;
+        const endIndex = params.page * params.limit;
+        const pagesCount = Math.ceil(masterProducts.length / params.limit);
 
         return {
             masterProducts: masterProducts.slice(startIndex, endIndex),
+            current: params.page,
             count: pagesCount,
         };
     },
@@ -28,13 +29,4 @@ module.exports = {
 
         return product;
     },
-
-    // getProductVariation: function(params) {
-    //   const variationId = params.id;
-    //   const apiProduct = ProductMgr.getProduct(variationId);
-    //   let variation = {}
-
-    //   variation = productVariation(variation, apiProduct, {});
-    //   return variation;
-    // }
 }

@@ -1,0 +1,48 @@
+{{!-- Cart page --}}
+
+{{> header}}
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each cartProducts.items}}
+        <tr>
+          <td>
+            <img 
+              src={{image}} 
+              alt=""
+              width="128"
+              height="128"
+            >
+            <h5>{{name}}</h5>
+          </td>
+
+          <td>
+            <h5>{{quantity}}</h5>
+          </td>
+
+          <td>
+            <h5>${{price}}</h5>
+          </td>
+        </tr>
+      {{/each }}
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td>
+          <h5>Total: ${{cartProducts.totalPrice}}</h5>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="/js/compiled/cart.js"></script>
