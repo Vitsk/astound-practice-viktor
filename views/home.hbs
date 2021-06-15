@@ -21,9 +21,8 @@
             <div class="card-body">
               <div class="mt-auto">
                 <h5 class="card-title">
-                  <a href="/product/{{id}}?variation={{variations.[0].pid}}" class="product-title">{{name}}</a>
+                  <a href="/product/{{ID}}?variation={{variations.[0].pid}}" class="product-title">{{name}}</a>
                 </h5>
-                <a href="#" class="btn btn-success">Add to cart</a>
               </div>
             </div>
           </div>
@@ -35,7 +34,7 @@
           {{!-- <li class="page-item"><a class="page-link" href="/">Previous</a></li> --}}
           {{#times products.count}}
             <li class="page-item">
-              <a class="page-link" href="/{{this}}">{{this}}</a>
+              <a class="page-link" href="/?page={{this}}">{{this}}</a>
             </li>
           {{/times}}
           {{!-- <li class="page-item"><a class="page-link" href="/">Next</a></li> --}}

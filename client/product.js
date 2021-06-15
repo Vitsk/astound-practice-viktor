@@ -26,16 +26,13 @@ selectVariation.addEventListener('change', (e) => {
 })
 
 addCartProduct.addEventListener('click', () => {
-  let cart = {
-    item: {
-      pid: selectVariation.value,
-      name: variationName.dataset.name,
-      variation: selectVariation.dataset.pid,
-      image: variationImage.src,
-      quantity: +inputQuantity.value,
-      price: +variationPrice.dataset.price * +inputQuantity.value
-    },
-    totalPrice: +variationPrice.dataset.price * +inputQuantity.value
+  let cartItem = {
+    pid: selectVariation.value,
+    master: selectVariation.dataset.masterid,
+    name: variationName.dataset.name,
+    image: variationImage.src,
+    quantity: +inputQuantity.value,
+    price: +variationPrice.dataset.price * +inputQuantity.value
   }
 
   fetch('/cart', {
@@ -43,7 +40,7 @@ addCartProduct.addEventListener('click', () => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(cart)
+    body: JSON.stringify(cartItem)
   });
 
   // res.then(res => res.json())

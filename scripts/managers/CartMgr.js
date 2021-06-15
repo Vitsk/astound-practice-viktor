@@ -6,9 +6,8 @@ CartMgr.getCartData = function () {
   return cart[0];
 };
 
-CartMgr.setCartData = function (cartItem) {
-  cart[0].items.push(cartItem.item);
-  cart[0].totalPrice += cartItem.totalPrice;
+CartMgr.setCartData = function (cartData) {
+  cart[0] = cartData;
   return JSON.stringify("Successful");
 };
 

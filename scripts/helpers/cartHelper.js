@@ -5,9 +5,9 @@ cartHelper.getCartData = function () {
   return CartFactory.getCartData();
 };
 
-cartHelper.setCartData = function (data) {
+cartHelper.setCartData = function (cartItem) {
   return CartFactory.setCartData({
-    data: data,
+    cartItem: cartItem,
   });
 };
 
