@@ -3,6 +3,7 @@
 // Import dependencies.
 import express from 'express'
 import exphbs from 'express-handlebars'
+import cookieParser from 'cookie-parser'
 import fs from 'fs'
 import path from 'path'
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({
   extended: true
 }))
 app.use(express.json())
+app.use(cookieParser());
 
 fs.readdir(path.resolve('controllers'), 'utf8', function (err, files) {
   if (err) {

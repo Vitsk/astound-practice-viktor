@@ -14,7 +14,10 @@ server.get('/cart', function (req, res) {
 
 server.post('/cart', function (req, res) {
   const cartProducts = cartHelper.setCartData(req.body);
+  
+  res.cookie("cartItem", JSON.stringify(cartProducts));
   res.send(cartProducts);
+  console.log(res.cookies);
 });
 
 module.exports = server;

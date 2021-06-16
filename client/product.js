@@ -7,6 +7,13 @@ const inputQuantity = document.querySelector('#input-quantity');
 
 const addCartProduct = document.querySelector('#add-cart-product');
 
+function _getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 selectVariation.addEventListener('change', (e) => {
   const masterId = selectVariation.dataset.masterid;
   const pid = e.target.value;
@@ -49,4 +56,6 @@ addCartProduct.addEventListener('click', () => {
   const res2 = fetch('/cart?data=true');
   res2.then(res => res.json())
     .then(data => console.log(data))
+
+  console.log(JSON.parse(_getCookie("cartItem")))
 })

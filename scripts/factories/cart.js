@@ -11,6 +11,20 @@ function _isItemUnique(items, pid) {
   return unique;
 }
 
+function _addDiscount(item) {
+  if (item.quantity >= 2) {
+    let num = item.price * 0.9;
+    item.price = Math.round(num * 100) / 100;
+    item.discount = 10;
+  }
+}
+
+function _totalPrice(cartData) {
+  cartData.items.forEach(function(item) {
+    cartData.totalPrice += item.price;
+  })
+}
+
 module.exports = {
   getCartData: function () {
     return CartMgr.getCartData();
@@ -27,11 +41,12 @@ module.exports = {
         if (item.pid === cartItem.pid) {
           item.quantity += cartItem.quantity;
           item.price = cartItem.price * item.quantity;
+          _addDiscount(item);
         }
       });
     }
 
-    cartData.totalPrice += cartItem.price;
+    _totalPrice(cartData)
 
     return CartMgr.setCartData(cartData);
   }

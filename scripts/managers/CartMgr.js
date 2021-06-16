@@ -8,7 +8,7 @@ CartMgr.getCartData = function () {
 
 CartMgr.setCartData = function (cartData) {
   cart[0] = cartData;
-  return JSON.stringify("Successful");
+  return cart[0];
 };
 
 module.exports = CartMgr;
