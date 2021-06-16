@@ -48,6 +48,6 @@ module.exports = {
 
     _totalPrice(cartData)
 
-    return CartMgr.setCartData(cartData);
+    return cartData;
   }
 }

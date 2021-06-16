@@ -5,7 +5,7 @@ cartHelper.getCartData = function () {
   return CartFactory.getCartData();
 };
 
-cartHelper.setCartData = function (cartItem) {
+cartHelper.setCartData = function (cartItem, cookieItems) {
   return CartFactory.setCartData({
     cartItem: cartItem,
   });

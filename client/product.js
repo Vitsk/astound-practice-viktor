@@ -48,14 +48,9 @@ addCartProduct.addEventListener('click', () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(cartItem)
-  });
-
-  // res.then(res => res.json())
-  //   .then(data => console.log(data));
+  })
 
   const res2 = fetch('/cart?data=true');
   res2.then(res => res.json())
     .then(data => console.log(data))
-
-  console.log(JSON.parse(_getCookie("cartItem")))
 })
