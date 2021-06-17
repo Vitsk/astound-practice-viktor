@@ -1,6 +1,8 @@
 [
   {
     "items": [],
-    "totalPrice": 0
+    "totalPrice": 0,
+    "discount": 0,
+    "shipping": 0
   }
 ]

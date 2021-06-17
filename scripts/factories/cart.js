@@ -32,7 +32,7 @@ module.exports = {
 
   setCartData: function (params) {
     const cartItem = params.cartItem;
-    const cartData = CartMgr.getCartData();
+    const cartData = params.cart;
     
     if (cartData.items.length === 0 || _isItemUnique(cartData.items, cartItem.pid)) {
       cartData.items.push(cartItem);

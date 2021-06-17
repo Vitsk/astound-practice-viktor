@@ -6,6 +6,7 @@ const variationPrice = document.querySelector('#variation-price');
 const inputQuantity = document.querySelector('#input-quantity');
 
 const addCartProduct = document.querySelector('#add-cart-product');
+const alert = document.querySelector('#alert-event');
 
 function _getCookie(name) {
   let matches = document.cookie.match(new RegExp(
@@ -35,11 +36,7 @@ selectVariation.addEventListener('change', (e) => {
 addCartProduct.addEventListener('click', () => {
   let cartItem = {
     pid: selectVariation.value,
-    master: selectVariation.dataset.masterid,
-    name: variationName.dataset.name,
-    image: variationImage.src,
-    quantity: +inputQuantity.value,
-    price: +variationPrice.dataset.price * +inputQuantity.value
+    quantity: +inputQuantity.value
   }
 
   fetch('/cart', {
@@ -48,9 +45,10 @@ addCartProduct.addEventListener('click', () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(cartItem)
-  })
-
-  const res2 = fetch('/cart?data=true');
-  res2.then(res => res.json())
-    .then(data => console.log(data))
+  }).then((res) => res.json())
+    .then((data) => {
+      alert.style.display = "block";
+      alert.insertBefore = text;
+      setTimeout(() => alert.style.display = "none", 5000)
+    })
 })
