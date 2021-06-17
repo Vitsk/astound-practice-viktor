@@ -8,7 +8,7 @@
       <tr>
         <th scope="col">Product</th>
         <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
+        <th scope="col">Price for one</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -28,7 +28,7 @@
           </td>
 
           <td>
-            <h5>{{quantity}}</h5>
+            <input type="number" id="counter" data-pid={{id}} class="form-control w-50" min="1" max="5" value="{{quantity}}" id="input-quantity">
           </td>
 
           <td>
@@ -46,10 +46,28 @@
       {{/each }}
 
       <tr>
+        <td>
+          <h5>Shipping: ${{cartProducts.shipping}}</h5>
+        </td>
+        <td>
+          <h5>Discount: {{cartProducts.discount}}%</h5>
+        </td>
+        <td>
+          <h5>Total: ${{cartProducts.totalPrice}}</h5>
+        </td>
+        <td>
+          <button 
+            id="count-tax"
+            class="btn btn-success"
+            data-amount={{cartProducts.totalPrice}}
+          >Count taxes</button>
+        </td>
+      </tr>
+      <tr>
         <td></td>
         <td></td>
         <td>
-          <h5>Total: ${{cartProducts.totalPrice}}</h5>
+          <h5 id="taxes"></h5>
         </td>
         <td></td>
       </tr>

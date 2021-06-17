@@ -19,21 +19,32 @@ cartHelper.getCartData = function (cookieItem) {
 
   let products = {
     items: [],
-    totalPrice: 0
+    discount: 0,
+    shipping: 10,
+    totalPrice: 0,
   };
+
+  cartData
 
   cartData.map(function(item) {
     let productItem = ProductMgr.getProductVariation(item.pid)[0];
-    
-    productItem.quantity = item.quantity;
-    // productItem.price *= item.quantity;
 
+    productItem.quantity = item.quantity;
     products.items.push(productItem);
   })
 
   products.items.forEach(function(item) {
     products.totalPrice += item.price * item.quantity
   })
+
+  if(products.totalPrice > 300) {
+    products.discount = 20
+    products.totalPrice = +(products.totalPrice * ((100 - products.discount) / 100)).toFixed(2)
+  }
+
+  if(products.totalPrice > 350) {
+    products.shipping = 0
+  }
 
   return products;
 };
@@ -44,6 +55,9 @@ cartHelper.setCartData = function (cartItem) {
   } else {
     cartData.forEach(function (item) {
       if (item.pid === cartItem.pid) {
+        if (item.quantity + cartItem.quantity > 5) {
+          throw new Error('Max quantity is 5')
+        }
         item.quantity += cartItem.quantity;
       }
     });
@@ -60,6 +74,15 @@ cartHelper.deleteCartData = function (pid) {
   })
 
   return cartData;
+}
+
+cartHelper.countTaxes = function (data) {
+  let temp = data.amount * ((100 - 5) / 100);
+
+  return {
+    success: true,
+    tax: +(data.amount - temp).toFixed(2)
+  }
 }
 
 module.exports = cartHelper;

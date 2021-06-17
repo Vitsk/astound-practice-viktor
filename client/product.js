@@ -8,13 +8,6 @@ const inputQuantity = document.querySelector('#input-quantity');
 const addCartProduct = document.querySelector('#add-cart-product');
 const alert = document.querySelector('#alert-event');
 
-function _getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
 selectVariation.addEventListener('change', (e) => {
   const masterId = selectVariation.dataset.masterid;
   const pid = e.target.value;
@@ -46,9 +39,14 @@ addCartProduct.addEventListener('click', () => {
     },
     body: JSON.stringify(cartItem)
   }).then((res) => res.json())
-    .then((data) => {
+    .then(() => {
       alert.style.display = "block";
-      alert.insertBefore = text;
       setTimeout(() => alert.style.display = "none", 5000)
+    })
+    .catch(() => {
+      alert.style.display = "block";
+      alert.children[0].innerText = "Max quality is 5"
+      alert.children[1].style.display = "none"
+      setTimeout(() => alert.style.display = "none", 3000)
     })
 })
