@@ -5,25 +5,37 @@
 
 <div class="container">
   <div class="d-flex flex-row mt-3">
-    <div class="left-column col-md-3 mt-3">
-      <h3>Sidebar</h3>
-    </div>
-
     <div class="col-md-9 d-flex flex-column align-items-center">
       <div class="d-flex flex-row flex-wrap justify-content-between">
         {{#each products.masterProducts}}
           <div class="card mt-4" style="width: 18rem;">
             <img 
-              src="{{image}}" 
+              src="{{image}}"
+              id="variation-image"
+              data-id={{master}}
               class="card-img-top" 
               alt="..."
             >
             <div class="card-body">
               <div class="mt-auto">
                 <h5 class="card-title">
-                  <a href="/product/{{ID}}?variation={{variations.[0].pid}}" class="product-title">{{name}}</a>
+                  <a href="/product/{{master}}?variation={{variations.[0].pid}}" class="product-title">{{name}}</a>
                 </h5>
               </div>
+
+              <select class="form-select mb-3" id="select-variation" aria-label="Default select" data-id={{master}}>
+                {{#each variations}}
+                  <option value="{{pid}}">{{displayValue}}</option>
+                {{/each}}
+              </select>
+
+              <label for="input-quantity" class="form-label">Quantity</label>
+              <input type="number" id="input-quantity" data-id={{master}} class="form-control" min="1" max="5" value="1">
+
+              <h4 id="variation-price" data-id={{master}} data-price={{price}}>Price: {{price}}$</h4>
+
+              <button id="add-cart-product" data-id={{master}} class="btn btn-success mt-4">Add to cart</button>
+
             </div>
           </div>
         {{/each}}
@@ -43,5 +55,7 @@
     </div>
   </div>
 </div>
+
+{{> alert}}
 
 <script src="/js/compiled/home.js"></script>

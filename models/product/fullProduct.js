@@ -2,6 +2,7 @@ const decorators = require('~/models/product/decorators');
 
 module.exports = function fullProduct(product, masterProduct, productVariation) {
     decorators.base(product, masterProduct, productVariation);
+    decorators.name(product, masterProduct, productVariation);
     decorators.master(product, masterProduct, productVariation);
     decorators.image(product, masterProduct, productVariation);
     decorators.price(product, masterProduct, productVariation);

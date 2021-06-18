@@ -8,7 +8,7 @@
       <tr>
         <th scope="col">Product</th>
         <th scope="col">Quantity</th>
-        <th scope="col">Price for one</th>
+        <th scope="col">Price</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -28,11 +28,11 @@
           </td>
 
           <td>
-            <input type="number" id="counter" data-pid={{id}} class="form-control w-50" min="1" max="5" value="{{quantity}}" id="input-quantity">
+            <input type="number" id="counter" data-pid={{id}} class="form-control w-50" min="1" max="5" value="{{quantity}}">
           </td>
 
           <td>
-            <h5>${{price}}</h5>
+            <h5 id="product-price" data-pid={{id}}>${{price}}</h5>
           </td>
 
           <td>
@@ -47,13 +47,13 @@
 
       <tr>
         <td>
-          <h5>Shipping: ${{cartProducts.shipping}}</h5>
+          <h5 id="shipping">Shipping: ${{cartProducts.shipping}}</h5>
         </td>
         <td>
-          <h5>Discount: {{cartProducts.discount}}%</h5>
+          <h5 id="discount">Discount: {{cartProducts.discount}}%</h5>
         </td>
         <td>
-          <h5>Total: ${{cartProducts.totalPrice}}</h5>
+          <h5 id="total-price">Total: ${{cartProducts.totalPrice}}</h5>
         </td>
         <td>
           <button 
@@ -74,5 +74,7 @@
     </tbody>
   </table>
 </div>
+
+{{> alert}}
 
 <script src="/js/compiled/cart.js"></script>

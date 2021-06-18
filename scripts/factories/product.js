@@ -16,10 +16,13 @@ module.exports = {
     const pagesCount = Math.ceil(masterProducts.length / params.limit);
 
     const limitMasterProducts = _paginate(masterProducts, params.page, params.limit);
+    
     const masterProductTiles = limitMasterProducts.map(function(item) {
       let product = {};
 
-      product = productTile(product, item);
+      let variationItem = ProductMgr.getProductVariation(item.variations[0].pid);
+      
+      product = fullProduct(product, item, variationItem[0]);
 
       return product;
     });
