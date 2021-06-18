@@ -26,14 +26,16 @@ cartHelper.getCartData = function (cookieItem) {
 
   cartData.map(function(item) {
     let productItem = ProductMgr.getProductVariation(item.pid)[0];
+    let clone = Object.assign({}, productItem);
 
-    productItem.quantity = item.quantity;
-
-    products.items.push(productItem);
+    clone.quantity = item.quantity;
+    clone.price *= item.quantity;
+    
+    products.items.push(clone);
   })
 
   products.items.forEach(function(item) {
-    products.totalPrice += item.price * item.quantity
+    products.totalPrice += item.price
   })
 
   if(products.totalPrice > 300) {
