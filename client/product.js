@@ -8,6 +8,12 @@ const inputQuantity = document.querySelector('#input-quantity');
 const addCartProduct = document.querySelector('#add-cart-product');
 const alert = document.querySelector('#alert-event');
 
+inputQuantity.addEventListener('change', (e) => {
+  let price = variationPrice.dataset.price * e.target.value;
+
+  variationPrice.innerText = `Price: ${price}$`
+})
+
 selectVariation.addEventListener('change', (e) => {
   const masterId = selectVariation.dataset.masterid;
   const pid = e.target.value;

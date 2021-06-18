@@ -24,12 +24,11 @@ cartHelper.getCartData = function (cookieItem) {
     totalPrice: 0,
   };
 
-  cartData
-
   cartData.map(function(item) {
     let productItem = ProductMgr.getProductVariation(item.pid)[0];
 
     productItem.quantity = item.quantity;
+
     products.items.push(productItem);
   })
 
