@@ -47,12 +47,14 @@ addCartProduct.addEventListener('click', () => {
   }).then((res) => res.json())
     .then(() => {
       alert.style.display = "block";
+      alert.children[0].innerText = "The product has been added to the cart";
+      alert.children[1].style.display = "block";
       setTimeout(() => alert.style.display = "none", 5000)
     })
     .catch(() => {
       alert.style.display = "block";
-      alert.children[0].innerText = "Max quality is 5"
-      alert.children[1].style.display = "none"
+      alert.children[0].innerText = "Max quality is 5";
+      alert.children[1].style.display = "none";
       setTimeout(() => alert.style.display = "none", 3000)
     })
 })
